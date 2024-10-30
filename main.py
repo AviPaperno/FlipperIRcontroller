@@ -1,5 +1,7 @@
 import asyncio
+
 from aiogram import Bot, Dispatcher, Router, types
+from aiogram.client.session.aiohttp import AiohttpSession
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
@@ -87,7 +89,9 @@ async def cmd_select_command(message: types.Message, state: FSMContext):
 
 
 async def main():
-    bot = Bot(token=BOT_TOKEN)
+    session = AiohttpSession()
+    session._connector_init = {'ssl': False}
+    bot = Bot(token=BOT_TOKEN, session=session)
     dp = Dispatcher()
     dp.include_router(router)
     await dp.start_polling(bot)
