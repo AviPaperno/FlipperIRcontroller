@@ -1,0 +1,2 @@
+aiogram==3.13.1
+pyflipper @ git+https://github.com/AviPaperno/pyFlipper.git@b780b0d51a342d1927a93d85bb4b14350994899a
